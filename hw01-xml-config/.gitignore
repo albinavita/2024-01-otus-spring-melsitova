@@ -23,6 +23,7 @@ target/*
 mvnw
 *.jar
 *.mvn
+dependency-reduced-pom.xml
 
 ### NetBeans ###
 /nbproject/private/
