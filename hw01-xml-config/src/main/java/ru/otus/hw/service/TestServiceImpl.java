@@ -9,6 +9,7 @@ import ru.otus.hw.domain.Question;
 public class TestServiceImpl implements TestService {
 
     private final IOService ioService;
+
     private final QuestionDao questionDao;
 
     @Override
@@ -39,4 +40,5 @@ public class TestServiceImpl implements TestService {
         }
         return builder.toString();
     }
+
 }

@@ -22,7 +22,8 @@ public class CsvQuestionDao implements QuestionDao {
     @Override
     public List<Question> findAll() {
         ClassLoader classLoader = getClass().getClassLoader();
-        try (InputStream inputStream = (Objects.requireNonNull(classLoader.getResourceAsStream(fileNameProvider.getTestFileName())))) {
+        try (InputStream inputStream = (Objects.requireNonNull
+                (classLoader.getResourceAsStream(fileNameProvider.getTestFileName())))) {
             MappingStrategy<QuestionDto> csvMappingToBean = new ColumnPositionMappingStrategy<>();
             csvMappingToBean.setType(QuestionDto.class);
 
@@ -36,7 +37,8 @@ public class CsvQuestionDao implements QuestionDao {
             }
             return questions;
         } catch (Exception e) {
-            throw new QuestionReadException(String.format("По данному пути такого файла нет %s", e.getMessage()), e.getCause());
+            throw new QuestionReadException(String.format("По данному пути такого файла нет %s", e.getMessage()),
+                                                                                                        e.getCause());
         }
     }
 
