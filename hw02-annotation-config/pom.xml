@@ -6,7 +6,7 @@
 
 
     <groupId>ru.otus.hw</groupId>
-    <artifactId>hw02-annotation-config</artifactId>
+    <artifactId>hw01-xml-config</artifactId>
     <version>1.0</version>
 
     <properties>
@@ -43,8 +43,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -106,6 +104,24 @@
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.3.0</version>
                 <!--Настроить для создания jar с зависимостями-->
+                <executions>
+                    <execution>
+                        <id>homeworks_01</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>ru.otus.hw.Application</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
