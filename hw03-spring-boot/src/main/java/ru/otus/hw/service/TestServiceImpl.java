@@ -30,7 +30,7 @@ public class TestServiceImpl implements TestService {
             var maxAnswers = question.answers().size();
 
             int numberAnswer = ioService.readIntForRangeWithPrompt(1, maxAnswers, printAnswers(question),
-                    "Вы можете ввести число от 1 до " + maxAnswers);
+                    ioService.getMessage("TestService.excecute.number.format.read.error", maxAnswers));
             Answer answer = question.answers().get(numberAnswer - 1);
             var isAnswerValid = answer.isCorrect();
             testResult.applyAnswer(question, isAnswerValid);
