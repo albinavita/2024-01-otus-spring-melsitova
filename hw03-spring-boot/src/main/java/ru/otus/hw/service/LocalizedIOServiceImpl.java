@@ -1,14 +1,17 @@
 package ru.otus.hw.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
 public class LocalizedIOServiceImpl implements LocalizedIOService {
 
+    @Qualifier("localizedIOServiceImpl")
     private final LocalizedMessagesService localizedMessagesService;
 
+    @Qualifier("streamsIOService")
     private final IOService ioService;
 
     @Override
