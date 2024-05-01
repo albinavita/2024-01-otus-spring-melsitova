@@ -1,0 +1,31 @@
+target/
+dependency-reduced-pom.xml
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea/*
+target/*
+*.cmd
+*.iws
+*.iml
+*.ipr
+mvnw
+*.jar
+*.mvn
+hw01-xml-config/*
+dependency-reduced-pom.xml
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
