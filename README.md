@@ -6,3 +6,4 @@
 - hw02-annotation-config - Домашнее задание №2
 - hw03-spring-boot - Домашнее задание №3
 - hw04-spring-shell - Домашнее задание №4
+- hw05-jdbc-simple - Домашнее задание №5
