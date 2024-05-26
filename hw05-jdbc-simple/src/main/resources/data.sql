@@ -1,8 +1,8 @@
 insert into authors(full_name)
-values ('Author_1'), ('Author_2'), ('Author_3');
+values ('Иван Андреевич Крылов'), ('Михаил Юрьевич Лермонтов'), ('Иван Сергеевич Тургенев');
 
 insert into genres(name)
-values ('Genre_1'), ('Genre_2'), ('Genre_3');
+values ('Басня'), ('Баллада'), ('Роман');
 
 insert into books(title, author_id, genre_id)
-values ('BookTitle_1', 1, 1), ('BookTitle_2', 2, 2), ('BookTitle_3', 3, 3);
+values ('Волк на псарне', 1, 1), ('Бородино', 2, 2), ('Отцы и дети', 3, 3);
