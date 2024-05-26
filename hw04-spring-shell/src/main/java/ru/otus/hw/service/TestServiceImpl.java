@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.otus.hw.dao.QuestionDao;
 import ru.otus.hw.domain.Answer;
-import ru.otus.hw.domain.Question;
 import ru.otus.hw.domain.Student;
 import ru.otus.hw.domain.TestResult;
+
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 @RequiredArgsConstructor
@@ -25,11 +27,15 @@ public class TestServiceImpl implements TestService {
         var questions = questionDao.findAll();
         var testResult = new TestResult(student);
 
-        for (var question: questions) {
-           ioService.printLine(question.text());
+        for (var question : questions) {
+            ioService.printLine(question.text());
             var maxAnswers = question.answers().size();
 
-            int numberAnswer = ioService.readIntForRangeWithPrompt(1, maxAnswers, printAnswers(question),
+            printAnswers(question.answers());
+            ioService.printLine("");
+
+            int numberAnswer = ioService.readIntForRangeWithPrompt(1, maxAnswers,
+                    ioService.getMessage("TestService.write.number.prompt"),
                     ioService.getMessage("TestService.excecute.number.format.read.error", maxAnswers));
             Answer answer = question.answers().get(numberAnswer - 1);
             var isAnswerValid = answer.isCorrect();
@@ -38,21 +44,10 @@ public class TestServiceImpl implements TestService {
         return testResult;
     }
 
-    public String printAnswers(Question question) {
-        StringBuilder builder = new StringBuilder();
-        int index = 1;
-        for (Answer answer : question.answers()) {
-            if (answer == null) {
-                return null;
-            }
-            builder.append(index)
-                    .append(".Вариант: ")
-                    .append(" ")
-                    .append(answer.text())
-                    .append("\n");
-            index++;
-        }
-        return builder.toString();
+    private void printAnswers(List<Answer> answers) {
+        AtomicInteger questionNumber = new AtomicInteger(1);
+        answers.forEach(answer ->
+                ioService.printFormattedLine("%s %s", questionNumber.getAndIncrement(), answer.text()));
     }
 
 }
