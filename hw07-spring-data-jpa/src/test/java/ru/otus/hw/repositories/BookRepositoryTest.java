@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.context.annotation.Import;
 import ru.otus.hw.models.Author;
 import ru.otus.hw.models.Book;
 import ru.otus.hw.models.Genre;
@@ -18,15 +17,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Репозиторий на основе JPA для работы с книгами")
 @DataJpaTest
-@Import({JpaBookRepository.class})
-class JpaBookRepositoryTest {
+class BookRepositoryTest {
 
     private static final long FIRST_AUTHOR_ID = 1L;
     private static final long FIRST_GENRE_ID = 1L;
     private static final long FIRST_BOOK_ID = 1L;
 
     @Autowired
-    private JpaBookRepository bookRepositoryJpa;
+    private BookRepository bookRepositoryJpa;
 
     @Autowired
     private TestEntityManager em;

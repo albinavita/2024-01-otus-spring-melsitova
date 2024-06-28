@@ -1,16 +1,20 @@
 package ru.otus.hw.repositories;
 
+import jakarta.annotation.Nonnull;
+import org.springframework.data.jpa.repository.EntityGraph;
+import org.springframework.data.jpa.repository.JpaRepository;
 import ru.otus.hw.models.Book;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface BookRepository {
-    Optional<Book> findById(Long id);
-
+public interface BookRepository extends JpaRepository<Book, Long> {
+    @Override
+    @EntityGraph("book-graph")
     List<Book> findAll();
 
-    Book save(Book book);
+    @Override
+    @EntityGraph("book-graph")
+    Optional<Book> findById(@Nonnull Long id);
 
-    void deleteById(Long id);
 }

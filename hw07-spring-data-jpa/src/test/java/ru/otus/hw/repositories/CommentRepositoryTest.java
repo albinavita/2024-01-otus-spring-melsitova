@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.context.annotation.Import;
 import ru.otus.hw.models.Book;
 import ru.otus.hw.models.Comment;
 
@@ -17,10 +16,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Репозиторий на основе JPA для работы с комментариями")
 @DataJpaTest
-@Import(JpaCommentRepository.class)
-public class JpaCommentRepositoryTest {
+public class CommentRepositoryTest {
     @Autowired
-    private JpaCommentRepository commentRepositoryJpa;
+    private CommentRepository commentRepositoryJpa;
 
     @Autowired
     private TestEntityManager em;
@@ -75,7 +73,7 @@ public class JpaCommentRepositoryTest {
     @DisplayName("Получение списка комментариев книги")
     @Test
     void shouldFindAllCommentsForFirstBook() {
-        var findComments = commentRepositoryJpa.findAllForBook(BOOK_FIRST_ID);
+        var findComments = commentRepositoryJpa.findAllByBookId(BOOK_FIRST_ID);
         var expectedComments = getCommentsForFirstBook();
 
         assertThat(findComments).containsExactlyElementsOf(expectedComments);
